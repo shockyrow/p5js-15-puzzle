@@ -13,7 +13,7 @@ class Board {
         }
 
         this.tiles.push(null);
-        // this.shuffle();
+        this.shuffle();
     }
 
     shuffle() {
