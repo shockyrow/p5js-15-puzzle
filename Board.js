@@ -6,6 +6,7 @@ class Board {
 
   resetTiles() {
     this.tiles = [];
+    this.solved = false;
     this.empty_index = this.size * this.size - 1;
 
     for (let i = 0; i < this.size * this.size - 1; i++) {
@@ -17,7 +18,7 @@ class Board {
   }
 
   shuffle() {
-    for (let i = 0; i < 1; i++) {
+    for (let i = 0; i < 1000; i++) {
       this.makeMove(random(['up', 'down', 'right', 'left']), false);
     }
   }
