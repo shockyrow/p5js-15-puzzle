@@ -1,5 +1,7 @@
 const SKETCH_MARGIN = 32;
 
+let ui = document.querySelector('.ui');
+let canvas = null;
 const board = new Board(4);
 
 function getCanvasWidth() {
@@ -15,23 +17,30 @@ function getMinSize() {
 }
 
 function setup() {
-  board.resetTiles();
+  restart();
+  noLoop();
   createCanvas(getMinSize(), getMinSize());
+  canvas = document.querySelector('canvas');
 
   var hammer = new Hammer(document.body, {
-    preventDefault: true
+    preventDefault: true,
   });
 
   hammer.get('swipe').set({
-    direction: Hammer.DIRECTION_ALL
+    direction: Hammer.DIRECTION_ALL,
   });
 
-  hammer.on("swipe", swiped);
+  hammer.on('swipe', swiped);
 }
 
 function draw() {
   background(24);
   board.draw();
+
+  if (board.solved) {
+    ui.classList.remove('hidden');
+    canvas.classList.add('hidden');
+  }
 }
 
 function windowResized() {
@@ -49,6 +58,7 @@ function keyPressed() {
 
   if (move !== '') {
     board.makeMove(move);
+    redraw();
   }
 }
 
@@ -58,7 +68,7 @@ function swiped(event) {
   if (event.direction == 2) {
     move = 'left';
   } else if (event.direction == 4) {
-    move = 'right'
+    move = 'right';
   } else if (event.direction == 8) {
     move = 'up';
   } else if (event.direction == 16) {
@@ -67,5 +77,17 @@ function swiped(event) {
 
   if (move !== '') {
     board.makeMove(move);
+    redraw();
   }
+}
+
+function restart() {
+  ui.classList.add('hidden');
+
+  if (canvas) {
+    canvas.classList.remove('hidden');
+  }
+
+  board.resetTiles();
+  redraw();
 }

@@ -1,31 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>15 Puzzle</title>
     <script src="libraries/hammer.min.js"></script>
     <script src="libraries/p5.min.js"></script>
     <style>
-        body {
-            background-color: rgba(16, 16, 16, 1);
-            display: grid;
-            place-items: center;
-            height: 100vh;
-            margin: 0;
-        }
+      body {
+        background-color: rgba(16, 16, 16, 1);
+        display: grid;
+        place-items: center;
+        height: 100vh;
+        margin: 0;
+      }
 
-        canvas {
-            border-radius: 8px;
-            box-shadow: 0 0 16px rgba(0, 0, 0, .2);
-        }
+      canvas {
+        border-radius: 8px;
+        box-shadow: 0 0 16px rgba(0, 0, 0, 0.2);
+      }
+
+      .ui {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        padding: 16px;
+      }
+
+      .ui > button {
+        color: #cccccc;
+        background-color: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 4px;
+        padding: 16px;
+        text-transform: uppercase;
+        transition: all ease-in-out 0.25s;
+      }
+
+      .ui > button:hover {
+        background-color: rgba(255, 255, 255, 0.25);
+      }
+
+      .hidden {
+        display: none;
+      }
     </style>
-</head>
-<body>
-    <main></main>
+  </head>
+  <body>
+    <main>
+      <div class="ui">
+        <button onclick="restart()">Restart</button>
+      </div>
+    </main>
     <script src="Tile.js"></script>
     <script src="Board.js"></script>
     <script src="sketch.js"></script>
-</body>
+  </body>
 </html>
